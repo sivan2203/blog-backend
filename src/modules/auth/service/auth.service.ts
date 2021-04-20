@@ -2,6 +2,7 @@ import { AdminRepository } from '../../admin/service/admin.repository';
 import { Admin } from '../../admin/model/admin';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+
 @Injectable()
 export class AuthService {
   constructor(
