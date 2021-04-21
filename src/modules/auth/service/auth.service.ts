@@ -1,5 +1,5 @@
 import { AdminRepository } from '../../admin/service/admin.repository';
-import { Admin } from '../../admin/model/admin';
+import { Admin } from '../../admin/model/admin.entity';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
@@ -11,8 +11,8 @@ export class AuthService {
   ) {}
   async validateAdmin(login: string, pass: string): Promise<Admin | null> {
     const admin: Admin = await this.adminRepository.findByLogin(login);
-    if (admin && admin.password === pass) {
-      const { password, ...secureAdmin } = admin;
+    if (admin && admin.passwordHash === pass) {
+      const { passwordHash, ...secureAdmin } = admin;
       return secureAdmin;
     }
     return null;
